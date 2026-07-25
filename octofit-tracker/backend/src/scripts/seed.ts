@@ -35,6 +35,8 @@ const Activity = mongoose.model('Activity', activitySchema);
 const LeaderboardEntry = mongoose.model('LeaderboardEntry', leaderboardSchema);
 const Workout = mongoose.model('Workout', workoutSchema);
 
+// Seed the octofit_db database with representative test data for users, teams,
+// activities, leaderboard entries, and workouts.
 async function seedDatabase() {
   try {
     await mongoose.connect(connectionString);
