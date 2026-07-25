@@ -5,6 +5,7 @@ export default function Activities() {
   const [activities, setActivities] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const activitiesCodespacesEndpoint = `https://${import.meta.env.VITE_CODESPACE_NAME || 'your-codespace'}-8000.app.github.dev/api/activities/`
 
   useEffect(() => {
     fetch(getApiUrl('/api/activities/'))
@@ -20,7 +21,7 @@ export default function Activities() {
     <div className="container py-5">
       <h1>Activities</h1>
       <p className="text-muted">
-        `VITE_CODESPACE_NAME` should be defined in <code>.env.local</code> for Codespaces URL support.
+        `VITE_CODESPACE_NAME` should be defined in <code>.env.local</code> for Codespaces URL support. Example endpoint: <code>{activitiesCodespacesEndpoint}</code>
       </p>
       {loading && <p>Loading activities...</p>}
       {error && <div className="alert alert-danger">{error}</div>}

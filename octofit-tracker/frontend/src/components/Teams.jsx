@@ -5,6 +5,7 @@ export default function Teams() {
   const [teams, setTeams] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const teamsCodespacesEndpoint = `https://${import.meta.env.VITE_CODESPACE_NAME || 'your-codespace'}-8000.app.github.dev/api/teams/`
 
   useEffect(() => {
     fetch(getApiUrl('/api/teams/'))
@@ -20,7 +21,7 @@ export default function Teams() {
     <div className="container py-5">
       <h1>Teams</h1>
       <p className="text-muted">
-        The API uses <code>VITE_CODESPACE_NAME</code> when available and falls back to localhost.
+        The API uses <code>VITE_CODESPACE_NAME</code> when available and falls back to localhost. Example endpoint: <code>{teamsCodespacesEndpoint}</code>
       </p>
       {loading && <p>Loading teams...</p>}
       {error && <div className="alert alert-danger">{error}</div>}

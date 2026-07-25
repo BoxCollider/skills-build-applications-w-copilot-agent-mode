@@ -5,6 +5,7 @@ export default function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const leaderboardCodespacesEndpoint = `https://${import.meta.env.VITE_CODESPACE_NAME || 'your-codespace'}-8000.app.github.dev/api/leaderboard/`
 
   useEffect(() => {
     fetch(getApiUrl('/api/leaderboard/'))
@@ -20,7 +21,7 @@ export default function Leaderboard() {
     <div className="container py-5">
       <h1>Leaderboard</h1>
       <p className="text-muted">
-        The application supports Codespaces with <code>VITE_CODESPACE_NAME</code> and falls back to localhost.
+        The application supports Codespaces with <code>VITE_CODESPACE_NAME</code> and falls back to localhost. Example endpoint: <code>{leaderboardCodespacesEndpoint}</code>
       </p>
       {loading && <p>Loading leaderboard...</p>}
       {error && <div className="alert alert-danger">{error}</div>}

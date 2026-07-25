@@ -5,6 +5,7 @@ export default function Users() {
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const usersCodespacesEndpoint = `https://${import.meta.env.VITE_CODESPACE_NAME || 'your-codespace'}-8000.app.github.dev/api/users/`
 
   useEffect(() => {
     fetch(getApiUrl('/api/users/'))
@@ -20,7 +21,7 @@ export default function Users() {
     <div className="container py-5">
       <h1>Users</h1>
       <p className="text-muted">
-        Use <code>VITE_CODESPACE_NAME</code> to construct the API URL for Codespaces, or leave it unset to use localhost.
+        Use <code>VITE_CODESPACE_NAME</code> to construct the API URL for Codespaces, or leave it unset to use localhost. Example endpoint: <code>{usersCodespacesEndpoint}</code>
       </p>
       {loading && <p>Loading users...</p>}
       {error && <div className="alert alert-danger">{error}</div>}
