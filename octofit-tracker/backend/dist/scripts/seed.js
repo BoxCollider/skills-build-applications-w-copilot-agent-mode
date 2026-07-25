@@ -37,12 +37,13 @@ const Team = mongoose_1.default.model('Team', teamSchema);
 const Activity = mongoose_1.default.model('Activity', activitySchema);
 const LeaderboardEntry = mongoose_1.default.model('LeaderboardEntry', leaderboardSchema);
 const Workout = mongoose_1.default.model('Workout', workoutSchema);
-// Seed the octofit_db database with representative test data for users, teams,
-// activities, leaderboard entries, and workouts.
+// Seed the octofit_db database with test data
+// This script populates users, teams, activities, leaderboard entries, and workouts.
 async function seedDatabase() {
     try {
         await mongoose_1.default.connect(connectionString);
         console.log('Connected to octofit_db');
+        console.log('Seed the octofit_db database with test data');
         await Promise.all([
             User.deleteMany({}),
             Team.deleteMany({}),

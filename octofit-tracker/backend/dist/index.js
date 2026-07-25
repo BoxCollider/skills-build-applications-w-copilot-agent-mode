@@ -15,24 +15,29 @@ const apiBaseUrl = codespaceName
 const userSchema = new mongoose_1.default.Schema({
     name: { type: String, required: true },
     role: { type: String, required: true },
+    description: { type: String, required: true },
 });
 const teamSchema = new mongoose_1.default.Schema({
     name: { type: String, required: true },
     focus: { type: String, required: true },
+    description: { type: String, required: true },
 });
 const activitySchema = new mongoose_1.default.Schema({
     type: { type: String, required: true },
     distanceKm: { type: Number, required: true },
     durationMinutes: { type: Number, required: true },
+    description: { type: String, required: true },
 });
 const leaderboardSchema = new mongoose_1.default.Schema({
     name: { type: String, required: true },
     points: { type: Number, required: true },
+    description: { type: String, required: true },
 });
 const workoutSchema = new mongoose_1.default.Schema({
     title: { type: String, required: true },
     durationMinutes: { type: Number, required: true },
     focus: { type: String, required: true },
+    description: { type: String, required: true },
 });
 const User = mongoose_1.default.model('User', userSchema);
 const Team = mongoose_1.default.model('Team', teamSchema);
