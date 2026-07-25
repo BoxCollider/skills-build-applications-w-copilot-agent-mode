@@ -1,10 +1,5 @@
 import { useEffect, useState } from 'react'
-
-const DEFAULT_API_HOST = 'http://localhost:8000'
-const codespaceName = import.meta.env.VITE_CODESPACE_NAME
-const apiHost = codespaceName
-  ? `https://${codespaceName}-8000.app.github.dev`
-  : DEFAULT_API_HOST
+import { getApiUrl } from '../config/api'
 
 export default function Users() {
   const [users, setUsers] = useState([])
@@ -12,7 +7,7 @@ export default function Users() {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    fetch(`${apiHost}/api/users/`)
+    fetch(getApiUrl('/api/users/'))
       .then((resp) => resp.json())
       .then((data) => {
         setUsers(Array.isArray(data.users) ? data.users : data.users || [])

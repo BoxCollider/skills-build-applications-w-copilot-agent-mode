@@ -1,10 +1,5 @@
 import { useEffect, useState } from 'react'
-
-const DEFAULT_API_HOST = 'http://localhost:8000'
-const codespaceName = import.meta.env.VITE_CODESPACE_NAME
-const apiHost = codespaceName
-  ? `https://${codespaceName}-8000.app.github.dev`
-  : DEFAULT_API_HOST
+import { getApiUrl } from '../config/api'
 
 export default function Teams() {
   const [teams, setTeams] = useState([])
@@ -12,7 +7,7 @@ export default function Teams() {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    fetch(`${apiHost}/api/teams/`)
+    fetch(getApiUrl('/api/teams/'))
       .then((resp) => resp.json())
       .then((data) => {
         setTeams(Array.isArray(data.teams) ? data.teams : data.teams || [])
