@@ -5,6 +5,7 @@ export default function Workouts() {
   const [workouts, setWorkouts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const workoutCodespacesEndpoint = `https://${import.meta.env.VITE_CODESPACE_NAME || 'your-codespace'}-8000.app.github.dev/api/workouts/`
 
   useEffect(() => {
     fetch(getApiUrl('/api/workouts/'))
@@ -20,7 +21,7 @@ export default function Workouts() {
     <div className="container py-5">
       <h1>Workouts</h1>
       <p className="text-muted">
-        Set <code>VITE_CODESPACE_NAME</code> in <code>.env.local</code> for Codespaces support, otherwise localhost is used.
+        Set <code>VITE_CODESPACE_NAME</code> in <code>.env.local</code> for Codespaces support, otherwise localhost is used. Example endpoint: <code>{workoutCodespacesEndpoint}</code>
       </p>
       {loading && <p>Loading workouts...</p>}
       {error && <div className="alert alert-danger">{error}</div>}
