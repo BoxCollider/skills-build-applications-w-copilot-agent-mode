@@ -40,12 +40,6 @@ const Activity = mongoose.model('Activity', activitySchema);
 const LeaderboardEntry = mongoose.model('LeaderboardEntry', leaderboardSchema);
 const Workout = mongoose.model('Workout', workoutSchema);
 
-const userDescription = 'User profile with personal information and role';
-const teamDescription = 'Team record containing group focus and purpose';
-const activityDescription = 'Activity entry tracking exercise details and duration';
-const leaderboardDescription = 'Leaderboard entry showing performance points and summary';
-const workoutDescription = 'Workout plan with title, duration, and training focus';
-
 // Seed the octofit_db database with representative test data for users, teams,
 // activities, leaderboard entries, and workouts.
 async function seedDatabase() {
