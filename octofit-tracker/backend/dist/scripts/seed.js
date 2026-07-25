@@ -8,30 +8,37 @@ const connectionString = process.env.MONGO_URI || process.env.MONGODB_URI || 'mo
 const userSchema = new mongoose_1.default.Schema({
     name: { type: String, required: true },
     role: { type: String, required: true },
+    description: { type: String, required: true },
 });
 const teamSchema = new mongoose_1.default.Schema({
     name: { type: String, required: true },
     focus: { type: String, required: true },
+    description: { type: String, required: true },
 });
 const activitySchema = new mongoose_1.default.Schema({
     type: { type: String, required: true },
     distanceKm: { type: Number, required: true },
     durationMinutes: { type: Number, required: true },
+    description: { type: String, required: true },
 });
 const leaderboardSchema = new mongoose_1.default.Schema({
     name: { type: String, required: true },
     points: { type: Number, required: true },
+    description: { type: String, required: true },
 });
 const workoutSchema = new mongoose_1.default.Schema({
     title: { type: String, required: true },
     durationMinutes: { type: Number, required: true },
     focus: { type: String, required: true },
+    description: { type: String, required: true },
 });
 const User = mongoose_1.default.model('User', userSchema);
 const Team = mongoose_1.default.model('Team', teamSchema);
 const Activity = mongoose_1.default.model('Activity', activitySchema);
 const LeaderboardEntry = mongoose_1.default.model('LeaderboardEntry', leaderboardSchema);
 const Workout = mongoose_1.default.model('Workout', workoutSchema);
+// Seed the octofit_db database with representative test data for users, teams,
+// activities, leaderboard entries, and workouts.
 async function seedDatabase() {
     try {
         await mongoose_1.default.connect(connectionString);
@@ -44,16 +51,60 @@ async function seedDatabase() {
             Workout.deleteMany({}),
         ]);
         await Promise.all([
-            User.create({ name: 'Avery', role: 'Captain' }),
-            User.create({ name: 'Jordan', role: 'Member' }),
-            Team.create({ name: 'River Runners', focus: 'Endurance' }),
-            Team.create({ name: 'Peak Pioneers', focus: 'Strength' }),
-            Activity.create({ type: 'Run', distanceKm: 5.2, durationMinutes: 32 }),
-            Activity.create({ type: 'Yoga', distanceKm: 0, durationMinutes: 25 }),
-            LeaderboardEntry.create({ name: 'Avery', points: 1200 }),
-            LeaderboardEntry.create({ name: 'Jordan', points: 980 }),
-            Workout.create({ title: 'Tempo Run', durationMinutes: 35, focus: 'Cardio' }),
-            Workout.create({ title: 'Core Circuit', durationMinutes: 20, focus: 'Strength' }),
+            User.create({
+                name: 'Avery',
+                role: 'Captain',
+                description: 'Team captain focused on strategy and motivation',
+            }),
+            User.create({
+                name: 'Jordan',
+                role: 'Member',
+                description: 'Reliable team member who contributes consistently',
+            }),
+            Team.create({
+                name: 'River Runners',
+                focus: 'Endurance',
+                description: 'Training group dedicated to long-distance endurance sessions',
+            }),
+            Team.create({
+                name: 'Peak Pioneers',
+                focus: 'Strength',
+                description: 'Performance-focused team centered on strength building',
+            }),
+            Activity.create({
+                type: 'Run',
+                distanceKm: 5.2,
+                durationMinutes: 32,
+                description: 'Morning run through the river trail',
+            }),
+            Activity.create({
+                type: 'Yoga',
+                distanceKm: 0,
+                durationMinutes: 25,
+                description: 'Gentle recovery session centered on flexibility',
+            }),
+            LeaderboardEntry.create({
+                name: 'Avery',
+                points: 1200,
+                description: 'Top performer with strong weekly consistency',
+            }),
+            LeaderboardEntry.create({
+                name: 'Jordan',
+                points: 980,
+                description: 'Steady contributor with reliable weekly effort',
+            }),
+            Workout.create({
+                title: 'Tempo Run',
+                durationMinutes: 35,
+                focus: 'Cardio',
+                description: 'Structured interval session for aerobic endurance',
+            }),
+            Workout.create({
+                title: 'Core Circuit',
+                durationMinutes: 20,
+                focus: 'Strength',
+                description: 'Short core and conditioning session for balance',
+            }),
         ]);
         console.log('Database seeding complete');
     }
